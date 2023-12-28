@@ -1,1 +1,63 @@
 
+--- ##### select in date format #####
+      
+      select to_date('07.07.2022', 'dd.mm.yyyy') as daty from dual
+      select to_date('2023/06/01', 'yyyy/mm/dd') as daty  from dual
+     
+          
+--- ##### need to find the last day of the month #####
+      
+       select sysdate as daty_last from dual
+       
+--- ### need to find the first day of the month/ of the week #####
+      
+       select trunc(sysdate, 'mm') as daty_first from dual
+       select trunc(sysdate, 'iw') as daty_first from dual
+    
+      
+--- ### need to extract day/month/year from date with number #####
+      select extract (day from to_date('2023/06/20', 'yyyy/mm/dd')) as daty from dual
+      select extract (month from to_date('2023/06/20', 'yyyy/mm/dd')) as daty from dual
+      select extract (year from to_date('2023/06/20', 'yyyy/mm/dd')) as daty from dual
+      
+      
+--- ### need to extract day/month/year from date with character #####
+      
+       select to_char(to_date('2023/06/01', 'yyyy/mm/dd'),'YYYY') as years from dual
+       select to_char(to_date('2023/06/01', 'yyyy/mm/dd'),'Month') as years from dual
+   
+
+--- ### need to extract day/month/year from date with character #####
+      
+       select to_char(to_date('2023/06/01', 'yyyy/mm/dd'),'DAY') as years from dual
+      
+ --- ### other ##### 
+      
+YEAR	--- ### year 
+YYYY	--- ### 4-digit year
+YYY	--- ### Last 3, 2 or 1 digit(s) of the year
+YY	--- ### Last 3, 2 or 1 digit(s) of the year
+Y	 --- ### Last 3, 2 or 1 digit(s) of the year
+Q	--- ### Quarter of the year (1, 2, 3, 4; JAN-MAR = 1).
+MM	--- ### Месяц (01-12; JAN = 01).
+MON	--- ### Month (01-12; JAN = 01).
+MONTH	--- ### Month
+RM	 --- ### (I-XII; JAN = I).
+WW	--- ### Week of the year (1-53), where week 1 begins on the first day of the year and continues until the seventh day of the year.
+W	--- ### Week of the month (1-5), where week 1 starts on the first day of the month and ends on the seventh
+IW	--- ### Week of the year (1-52 or 1-53) based on the ISO standard.
+D	--- ### Name of the day.
+DAY	--- ### Название дня
+DD	--- ### Day of the month (1-31)
+DDD	--- ### Day of the year (1-366)
+DY	--- ### Abbreviated name of the day
+J	--- ### Julian day; number of days since January 1, 4712 BC
+HH	--- ### Hour of the day (1-12)
+HH12	--- ### Hour of the day (1-12)
+HH24	--- ### Hour of day (0-23)
+MI	--- ### Minutes (0-59)
+SS	--- ### Seconds (0-59)
+SSSSS	--- ### Seconds after midnight (0-86399)
+FF	--- ### Fractional seconds
+        
+      
