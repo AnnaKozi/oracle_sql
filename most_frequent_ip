@@ -1,15 +1,18 @@
-### If you need to find the mode (most frequent) IP address for each customer_id in your customer_sessions table, you can use a similar approach 
-## but with an additional PARTITION BY clause in the ROW_NUMBER() window function to partition the data by customer_id. Here's how you can do it:
+### If you need to find the mode (most frequent) IP address for each customer_id in your table_device_session, you can use a similar approach 
+## but with an additional PARTITION BY clause in the ROW_NUMBER() window function to partition the data by id. Here's how you can do it:
 
 
-SELECT customer_id, ip_address
+    
+SELECT 
+customer_id, IP_ADDRESS, ip_count
 FROM (
-    SELECT customer_id,
-           ip_address,
+    SELECT id,
+           IP_ADDRESS,
            COUNT(ip_address) AS ip_count,
-           ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY COUNT(ip_address) DESC) AS rn
-    FROM customer_sessions
-    GROUP BY customer_id, ip_address
-    ORDER BY customer_id, COUNT(ip_address) DESC
+           ROW_NUMBER() OVER (PARTITION BY cid ORDER BY COUNT(IP_ADDRESS) DESC, SESSION_DATE desc) AS rn
+    FROM your_table_device_session where IP_ADDRESS is not null
+    GROUP BY cid, IP_ADDRESS,  SESSION_DATE
+    ORDER BY id, COUNT(IP_ADDRESS) DESC
 )
 WHERE rn = 1;
+
