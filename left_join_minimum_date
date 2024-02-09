@@ -1,0 +1,11 @@
+To perform a left join in Oracle SQL while also retrieving the minimum date from the joined table, you can use a subquery or a common table expression (CTE) to calculate the minimum date for each group in the joined table. Here's an example using a subquery:
+
+sql
+Copy code
+SELECT t1.id, t1.name, t2.min_date
+FROM table1 t1
+LEFT JOIN (
+    SELECT id, MIN(date_column) AS min_date
+    FROM table2
+    GROUP BY id
+) t2 ON t1.id = t2.id;
