@@ -1,0 +1,1 @@
+SELECT REGEXP_SUBSTR('your_string_here', '.', 4, 1) AS fourth_symbol FROM dual;
