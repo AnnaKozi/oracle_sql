@@ -1,11 +1,8 @@
-
---- ### need to create calendar #####
-   
+----<<<------------------------------------------------------>>>>> example how you create a calendar
    
      WITH CALENDARIO as (
         select rownum - 1 as daynum
         from dual
-        --connect by rownum < sysdate+10000 - to_date('1-jan-2020') + 1
           connect by rownum < sysdate+10000 - to_date('01.01.2020', 'dd.mm.yyyy') + 1
                 ),
 
@@ -21,8 +18,14 @@
                    ,to_char(monthdate,'Dy')  as weekday
                     from calendar_1)
 
-       select MONTHDATE,
-              DATE_IW,
-              DATE_MM,
-              weekday
-              from calendar_2
+
+----<<<------------------------------------------------------>>>>> example of calendar if need only by week
+
+
+    select 
+    MONTHDATE
+    ,to_char(MONTHDATE,'day') as days
+    ,to_char(MONTHDATE, 'Month') as month
+    ,to_char(MONTHDATE,'YYYY')  as year_y
+    from calendar_2
+    where MONTHDATE >= to_date('2024/01/01', 'yyyy/mm/dd') and MONTHDATE = to_char(MONTHDATE) and to_char(MONTHDATE,'D') = 2
